@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Piste C — Calanque · Labo N° Heure</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+body{background:var(--encre);color:var(--chaux)}
+nav.top{mix-blend-mode:normal;color:var(--chaux)}
+.pill{border-color:var(--chaux)}.pill:hover{background:var(--chaux);color:var(--encre)}.pill.solid{background:var(--chaux);color:var(--encre)}
+/* film scrollé : 4 chapitres, 400vh, images en crossfade + zoom */
+.film{height:420svh;position:relative}
+.film .stage{position:sticky;top:0;height:100svh;overflow:hidden}
+.film .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.15)}
+.film .stage::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,17,17,.15),rgba(17,17,17,.55) 70%,rgba(17,17,17,.9))}
+.film .cap{position:absolute;left:4vw;bottom:8vh;z-index:2;max-width:40ch}
+.film .cap .c{position:absolute;bottom:0;left:0;opacity:0;transform:translateY(20px)}
+.film .cap h2{font-family:var(--display);font-size:clamp(2.6rem,8vw,7.5rem);letter-spacing:-.04em;line-height:.9;text-transform:uppercase}
+.film .cap p{margin-top:1rem;line-height:1.5;opacity:.85;max-width:34ch}
+.film .cap .k{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-bottom:.8rem;display:block}
+.film .title{position:absolute;inset:0;display:grid;place-items:center;z-index:3;pointer-events:none}
+.film .title h1{font-size:clamp(3.6rem,15vw,15rem);text-align:center;color:var(--chaux)}
+.film .title small{display:block;font-family:var(--sans);font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;opacity:.7;margin-top:1.5rem}
+.film .prog{position:absolute;left:4vw;top:50%;transform:translateY(-50%);z-index:3;display:flex;flex-direction:column;gap:.6rem}
+.film .prog i{width:2px;height:28px;background:rgba(237,230,219,.25);display:block;transition:background .3s}
+.film .prog i.on{background:var(--glow)}
+.film .hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+
+/* après le film : carte sur fond chaux */
+.after{background:var(--chaux);color:var(--encre);padding:7rem 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.4rem;margin-top:3rem}
+.grid figure{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:12px;background:var(--terre)}
+.grid img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.grid figure:hover img{transform:scale(1.05)}
+.grid figcaption{position:absolute;inset:auto 0 0 0;padding:1rem;background:linear-gradient(0deg,rgba(17,17,17,.75),transparent);color:var(--chaux)}
+.grid figcaption b{font-family:var(--display);text-transform:uppercase;display:block}
+.grid figcaption span{font-size:.8rem;opacity:.8}
+.grid .n{position:absolute;top:.8rem;left:.8rem;font-family:var(--display);font-size:.8rem;background:var(--chaux);color:var(--encre);padding:.3rem .6rem;border-radius:999px}
+.after h2{font-family:var(--display);font-size:clamp(2.2rem,5vw,4rem);letter-spacing:-.03em;line-height:1}
+.infos{padding:5rem 0 3rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:3rem;border-top:1px solid rgba(17,17,17,.2);margin-top:5rem}
+.infos h3{font-family:var(--display);font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem}
+.infos p,.infos li{line-height:1.7;list-style:none;opacity:.85}
+.infos .pill{border-color:var(--encre)}.infos .pill.solid{background:var(--encre);color:var(--chaux)}
+.after footer{color:var(--encre)}
+</style>
+</head>
+<body>
+<a class="back" href="index.html">← pistes</a>
+<nav class="top"><div class="brand">LABO N° HEURE</div><ul><li><a href="#nums">Numéros</a></li><li><a href="#infos">Infos</a></li></ul></nav>
+
+<section class="film" id="film">
+  <div class="stage">
+    <img src="img/facade2.jpg" data-i="0" alt="">
+    <img src="img/interieur.jpg" data-i="1" alt="">
+    <img src="img/niche.jpg" data-i="2" alt="">
+    <img src="img/c-cosmic.jpg" data-i="3" alt="">
+    <div class="title" id="title"><div><h1 class="wordmark">Labo<br>N<span class="deg">°</span> Heure</h1><small>Cocktailerie · Numéros · Spiritueux — Marseille</small></div></div>
+    <div class="prog"><i class="on"></i><i></i><i></i><i></i></div>
+    <div class="cap">
+      <div class="c"><span class="k">01 — La Plaine</span><h2>Une petite place, calme le soir</h2><p>Au 49a rue des Trois Frères Barthélémy, entre Notre-Dame du Mont et le Cours Julien.</p></div>
+      <div class="c"><span class="k">02 — Le labo</span><h2>Chaux, bois, cannage</h2><p>Un bar minimal et chaud. Pas de dorures, pas de pénombre forcée.</p></div>
+      <div class="c"><span class="k">03 — Les niches</span><h2>Les bouteilles s'allument</h2><p>Gin au kelp, rhum Eminente, cachaça Aguacana. Des spiritueux qu'on ne croise pas ailleurs.</p></div>
+      <div class="c"><span class="k">04 — Les numéros</span><h2>Cinq centilitres de bonheur</h2><p>Sept cocktails numérotés, faits maison, entre 10 et 13 €.</p></div>
+    </div>
+    <div class="hint">Faites défiler</div>
+  </div>
+</section>
+
+<section class="after">
+  <div class="wrap" id="nums">
+    <div class="label">La carte</div>
+    <h2 style="margin-top:.5rem">Les numéros</h2>
+    <div class="grid">
+      <figure><img src="img/c-clandestino.jpg" alt=""><span class="n">N°01</span><figcaption><b>Clandestino</b><span>Mezcal · agrumes · fumée — 12 €</span></figcaption></figure>
+      <figure><img src="img/c-coconut.jpg" alt=""><span class="n">N°02</span><figcaption><b>Coconut</b><span>Rhum · coco · citron vert — 11 €</span></figcaption></figure>
+      <figure><img src="img/c-cosmic.jpg" alt=""><span class="n">N°03</span><figcaption><b>Cosmic Girl</b><span>Gin · fleurs · pétillant — 12 €</span></figcaption></figure>
+      <figure><img src="img/c-goudes.jpg" alt=""><span class="n">N°04</span><figcaption><b>Feeling Goudes</b><span>Pastis · fenouil · soleil — 10 €</span></figcaption></figure>
+      <figure><img src="img/c-jamming.jpg" alt=""><span class="n">N°05</span><figcaption><b>Jamming</b><span>Rhum · fruits rouges · épices — 12 €</span></figcaption></figure>
+      <figure><img src="img/c-mannix.jpg" alt=""><span class="n">N°06</span><figcaption><b>Mannix</b><span>Whisky · amer · cerise — 13 €</span></figcaption></figure>
+      <figure><img src="img/c-sunny.jpg" alt=""><span class="n">N°07</span><figcaption><b>Sunny</b><span>Cachaça · passion · basilic — 11 €</span></figcaption></figure>
+      <figure><img src="img/team.jpg" alt=""><figcaption><b>Zak &amp; Marine</b><span>Les alchimistes</span></figcaption></figure>
+    </div>
+    <section class="infos" id="infos">
+      <div><h3>Horaires</h3><ul><li>Mardi — Samedi</li><li style="font-family:var(--display);font-size:1.6rem">18h — 01h</li></ul></div>
+      <div><h3>Adresse</h3><p>49a rue des Trois Frères Barthélémy<br>13006 Marseille</p></div>
+      <div><h3>Privatisation</h3><a class="pill solid" href="mailto:bonjour@labonheure.fr">Nous écrire</a></div>
+      <div><h3>Suivre</h3><p><a href="https://www.instagram.com/labo_n.h/" target="_blank">@labo_n.h ↗</a></p></div>
+    </section>
+    <footer>© Labo N° Heure — Piste C « Calanque » · maquette (photos en attendant les vidéos)</footer>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const imgs=[...document.querySelectorAll('.stage img')],caps=[...document.querySelectorAll('.cap .c')],dots=[...document.querySelectorAll('.prog i')];
+gsap.set(imgs[0],{opacity:1,scale:1.15});
+const tl=gsap.timeline({scrollTrigger:{trigger:'#film',start:'top top',end:'bottom bottom',scrub:.6,
+  onUpdate:s=>{const i=Math.min(3,Math.floor(s.progress*4));dots.forEach((d,j)=>d.classList.toggle('on',j===i));}}});
+tl.to('#title',{opacity:0,scale:.92,duration:.6},0)
+  .to(imgs[0],{scale:1,duration:1},0)
+  .to(caps[0],{opacity:1,y:0,duration:.4},.4);
+[1,2,3].forEach((i,k)=>{
+  const t=1+k*1;
+  tl.to(caps[i-1],{opacity:0,y:-20,duration:.3},t)
+    .fromTo(imgs[i],{opacity:0,scale:1.15},{opacity:1,scale:1,duration:1},t)
+    .to(caps[i],{opacity:1,y:0,duration:.4},t+.35);
+});
+gsap.from('.grid figure',{y:40,opacity:0,stagger:.06,duration:.8,scrollTrigger:{trigger:'.grid',start:'top 80%'}});
+</script>
+</body>
+</html>

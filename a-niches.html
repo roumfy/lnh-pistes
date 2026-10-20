@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Piste A — Niches · Labo N° Heure</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ---------- HERO ---------- */
+.hero{min-height:100svh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:4vw;padding:12vh 4vw 6vh;position:relative}
+.hero h1{font-size:clamp(3.4rem,11vw,10.5rem)}
+.hero .sub{margin-top:1.6rem;max-width:34ch;font-size:1.05rem;line-height:1.5;opacity:.8}
+.hero .cta{display:flex;gap:.8rem;margin-top:2.2rem;flex-wrap:wrap}
+.niche{position:relative;aspect-ratio:4/5;width:min(100%,520px);justify-self:end;
+  border-radius:50% 50% 14px 14px/38% 38% 14px 14px;overflow:hidden;background:var(--terre);
+  box-shadow:inset 0 0 0 10px var(--terre-2),0 30px 60px -20px rgba(60,30,10,.45)}
+.niche img{width:100%;height:100%;object-fit:cover;filter:brightness(.35) saturate(.8);transition:filter 1.6s cubic-bezier(.2,.7,.2,1)}
+.niche.lit img{filter:brightness(1) saturate(1)}
+.niche::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 50% 12%,var(--glow) 0%,rgba(243,217,164,0) 70%);opacity:0;mix-blend-mode:screen;transition:opacity 1.6s}
+.niche.lit::after{opacity:.85}
+.hero .scroll{position:absolute;bottom:2rem;left:4vw;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;opacity:.5}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:16vh}.niche{justify-self:start;width:min(100%,420px)}}
+
+/* ---------- MARQUEE ---------- */
+.marq{background:var(--encre);color:var(--chaux);overflow:hidden;padding:1rem 0;white-space:nowrap}
+.marq span{display:inline-block;font-family:var(--display);font-size:1.2rem;letter-spacing:.04em;text-transform:uppercase;padding-right:3rem;animation:m 28s linear infinite}
+@keyframes m{to{transform:translateX(-50%)}}
+
+/* ---------- NUMÉROS ---------- */
+.nums{padding:9rem 0 6rem}
+.nums header{display:flex;justify-content:space-between;align-items:end;margin-bottom:3.5rem;gap:2rem;flex-wrap:wrap}
+.nums h2{font-family:var(--display);font-size:clamp(2.4rem,6vw,5rem);letter-spacing:-.03em;line-height:.95}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:2.2rem 1.6rem;background:var(--terre);padding:3.5rem 3rem 4rem;border-radius:22px}
+.card{position:relative}
+.card .arch{aspect-ratio:3/4;border-radius:50% 50% 10px 10px/34% 34% 10px 10px;overflow:hidden;background:#9a5e47;box-shadow:inset 0 0 0 7px var(--terre-2)}
+.card .arch img{width:100%;height:100%;object-fit:cover;filter:brightness(.4);transition:filter .9s ease,transform .9s ease}
+.card.lit .arch img{filter:brightness(1)}
+.card:hover .arch img{transform:scale(1.04)}
+.card .arch::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(55% 35% at 50% 10%,var(--glow),rgba(243,217,164,0) 70%);opacity:0;mix-blend-mode:screen;transition:opacity .9s}
+.card.lit .arch::after{opacity:.9}
+.card .n{position:absolute;top:-1.1rem;left:50%;transform:translateX(-50%);background:var(--chaux);color:var(--encre);font-family:var(--display);font-size:.9rem;padding:.35rem .7rem;border-radius:999px;letter-spacing:.02em}
+.card .meta{color:var(--chaux);margin-top:1rem;text-align:center}
+.card .meta b{font-family:var(--display);font-size:1.15rem;display:block;text-transform:uppercase;letter-spacing:-.01em}
+.card .meta small{display:block;opacity:.75;margin-top:.3rem;font-size:.85rem}
+.card .meta em{display:block;font-style:normal;margin-top:.5rem;font-weight:600}
+
+/* ---------- LABO ---------- */
+.labo{padding:7rem 0;display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center}
+.labo h2{font-family:var(--display);font-size:clamp(2.2rem,5vw,4rem);letter-spacing:-.03em;line-height:1;margin:.6rem 0 1.4rem}
+.labo p{font-size:1.1rem;line-height:1.6;max-width:46ch;opacity:.85}
+.labo .ph{border-radius:50% 50% 14px 14px/30% 30% 14px 14px;overflow:hidden;box-shadow:inset 0 0 0 8px var(--terre-2);background:var(--terre)}
+.labo .ph img{width:100%;aspect-ratio:4/5;object-fit:cover}
+@media(max-width:900px){.labo{grid-template-columns:1fr}}
+
+/* ---------- OÙ ---------- */
+.ou{position:relative;height:90svh;overflow:hidden;background:var(--encre)}
+.ou img{position:absolute;inset:0;width:100%;height:115%;object-fit:cover;opacity:.9}
+.ou .t{position:absolute;left:4vw;bottom:9vh;color:var(--chaux);max-width:30ch}
+.ou .t h2{font-family:var(--display);font-size:clamp(2.4rem,7vw,6rem);letter-spacing:-.03em;line-height:.95}
+.ou .t p{margin-top:1rem;opacity:.85;line-height:1.5}
+
+/* ---------- INFOS ---------- */
+.infos{padding:7rem 0 3rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:3rem}
+.infos h3{font-family:var(--display);font-size:1rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem}
+.infos p,.infos li{line-height:1.7;list-style:none;opacity:.85}
+.infos .big{font-family:var(--display);font-size:1.5rem;letter-spacing:-.02em}
+</style>
+</head>
+<body>
+<a class="back" href="index.html">← pistes</a>
+<nav class="top"><div class="brand">LABO N° HEURE</div><ul><li><a href="#nums">Numéros</a></li><li><a href="#labo">Le labo</a></li><li><a href="#ou">Où</a></li><li><a href="#infos">Infos</a></li></ul></nav>
+
+<section class="hero">
+  <div>
+    <div class="label rev">Cocktailerie · Numéros · Spiritueux — La Plaine, Marseille</div>
+    <h1 class="wordmark rev">Labo<br>N<span class="deg">°</span> Heure</h1>
+    <p class="sub rev">L'alchimie du bonheur, servie en cinq centilitres. Des cocktails numérotés, des spiritueux choisis, une place calme à deux pas de la Plaine.</p>
+    <div class="cta rev"><a class="pill solid" href="#nums">Voir les numéros</a><a class="pill" href="#infos">Privatiser</a></div>
+  </div>
+  <div class="niche" id="heroNiche"><img src="img/niche.jpg" alt="La niche du bar, bouteilles rétro-éclairées"></div>
+  <div class="scroll">Faites défiler — la niche s'allume</div>
+</section>
+
+<div class="marq"><span>Clandestino · Coconut · Cosmic Girl · Feeling Goudes · Jamming · Mannix · Sunny · Clandestino · Coconut · Cosmic Girl · Feeling Goudes · Jamming · Mannix · Sunny ·&nbsp;</span></div>
+
+<section class="nums wrap" id="nums">
+  <header>
+    <div><div class="label">La carte</div><h2>Les numéros</h2></div>
+    <p style="max-width:34ch;opacity:.75;line-height:1.5">Chaque cocktail porte un numéro. Chaque numéro a sa niche. Elles s'allument quand vous passez.</p>
+  </header>
+  <div class="wall" id="wall">
+    <article class="card"><div class="arch"><img src="img/c-clandestino.jpg" alt=""></div><span class="n">N°01</span><div class="meta"><b>Clandestino</b><small>Mezcal · agrumes · fumée</small><em>12 €</em></div></article>
+    <article class="card"><div class="arch"><img src="img/c-coconut.jpg" alt=""></div><span class="n">N°02</span><div class="meta"><b>Coconut</b><small>Rhum · coco · citron vert</small><em>11 €</em></div></article>
+    <article class="card"><div class="arch"><img src="img/c-cosmic.jpg" alt=""></div><span class="n">N°03</span><div class="meta"><b>Cosmic Girl</b><small>Gin · fleurs · pétillant</small><em>12 €</em></div></article>
+    <article class="card"><div class="arch"><img src="img/c-goudes.jpg" alt=""></div><span class="n">N°04</span><div class="meta"><b>Feeling Goudes</b><small>Pastis · fenouil · soleil</small><em>10 €</em></div></article>
+    <article class="card"><div class="arch"><img src="img/c-jamming.jpg" alt=""></div><span class="n">N°05</span><div class="meta"><b>Jamming</b><small>Rhum · fruits rouges · épices</small><em>12 €</em></div></article>
+    <article class="card"><div class="arch"><img src="img/c-mannix.jpg" alt=""></div><span class="n">N°06</span><div class="meta"><b>Mannix</b><small>Whisky · amer · cerise</small><em>13 €</em></div></article>
+    <article class="card"><div class="arch"><img src="img/c-sunny.jpg" alt=""></div><span class="n">N°07</span><div class="meta"><b>Sunny</b><small>Cachaça · passion · basilic</small><em>11 €</em></div></article>
+  </div>
+</section>
+
+<section class="labo wrap" id="labo">
+  <div class="ph"><img src="img/team.jpg" alt="Zak et Marine"></div>
+  <div>
+    <div class="label">Le labo</div>
+    <h2>Zak &amp; Marine,<br>alchimistes de quartier</h2>
+    <p>Ils réinventent les classiques et composent des élixirs maison, avec des spiritueux qu'ils vont chercher loin et des produits qu'ils trouvent près. Le reste, c'est de l'accueil.</p>
+    <p style="margin-top:1rem;font-size:.9rem;opacity:.6">« Bottles of kelp-infused gin are backlit behind a sleek, minimalist bar. » — The New York Times, 36 Hours in Marseille</p>
+  </div>
+</section>
+
+<section class="ou" id="ou">
+  <img src="img/facade2.jpg" alt="La façade du bar" id="ouImg">
+  <div class="t"><div class="label" style="opacity:.7">Où</div><h2>49a rue des Trois Frères Barthélémy</h2><p>Entre Notre-Dame du Mont, le Cours Julien et la Plaine. Une petite place calme le soir.</p></div>
+</section>
+
+<section class="infos wrap" id="infos">
+  <div><h3>Horaires</h3><ul><li>Mardi — Samedi</li><li class="big">18h — 01h</li><li style="opacity:.55">Fermé dimanche &amp; lundi</li></ul></div>
+  <div><h3>Adresse</h3><p>49a rue des Trois Frères Barthélémy<br>13006 Marseille</p><a class="pill" style="margin-top:1rem" href="https://maps.google.com/?q=Labo+n+heure+Marseille" target="_blank">Itinéraire</a></div>
+  <div><h3>Privatisation</h3><p>Anniversaires, afterworks, lancements. Le labo se privatise.</p><a class="pill solid" style="margin-top:1rem" href="mailto:bonjour@labonheure.fr">Nous écrire</a></div>
+  <div><h3>Suivre</h3><p><a href="https://www.instagram.com/labo_n.h/" target="_blank">@labo_n.h ↗</a></p></div>
+</section>
+<footer class="wrap">© Labo N° Heure — Piste A « Niches » · maquette</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+gsap.to('.hero .rev',{opacity:1,y:0,duration:1,stagger:.12,ease:'power3.out',delay:.2});
+setTimeout(()=>document.getElementById('heroNiche').classList.add('lit'),900);
+document.querySelectorAll('.card').forEach((c,i)=>{
+  ScrollTrigger.create({trigger:c,start:'top 80%',onEnter:()=>setTimeout(()=>c.classList.add('lit'),i*90)});
+});
+gsap.from('.wall',{y:60,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.wall',start:'top 85%'}});
+gsap.from('.labo > *',{y:40,opacity:0,duration:.9,stagger:.15,scrollTrigger:{trigger:'.labo',start:'top 75%'}});
+gsap.to('#ouImg',{yPercent:-12,ease:'none',scrollTrigger:{trigger:'.ou',start:'top bottom',end:'bottom top',scrub:true}});
+gsap.from('.ou .t > *',{y:30,opacity:0,stagger:.12,scrollTrigger:{trigger:'.ou',start:'top 60%'}});
+</script>
+</body>
+</html>
