@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Piste D — Nuit chaude · Labo N° Heure</title>
+<link rel="stylesheet" href="aw.css">
+<style>
+/* Système tonal : 3 noirs chauds + 1 flip chaux. Accent unique : lueur de niche. */
+:root{--bg:#161210;--surface:#1E1816;--mid:#2A211D;--flip:#EDE6DB;--ink:#161210;--accent:#F3D9A4;--btn-hover-text:#161210}
+body{background:var(--bg);color:#EDE6DB}
+
+/* HERO — asymétrique : wordmark en bas à gauche, image colonne droite étroite bleed */
+.hero{min-height:100svh;position:relative;display:grid;grid-template-columns:1fr 34vw;padding-top:10vh}
+.hero .txt{align-self:end;padding:0 0 7vh 4vw}
+.hero .txt .cap{margin-bottom:1.6rem;display:block}
+.hero .display{color:#EDE6DB}
+.hero .display em{font-style:normal;color:var(--accent)}
+.hero .sub{margin-top:2.4rem;max-width:36ch;opacity:.75}
+.hero .cta{display:flex;gap:1rem;margin-top:2rem}
+.hero .ph{position:relative;overflow:hidden}
+.hero .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.08)}
+.hero .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg),transparent 30%)}
+.hero .meta{position:absolute;right:4vw;bottom:4vh;text-align:right;font-size:.75rem;opacity:.6;line-height:1.7}
+@media(max-width:900px){.hero{grid-template-columns:1fr;grid-template-rows:50svh 1fr;padding-top:0}.hero .ph{order:-1}.hero .ph::after{background:linear-gradient(0deg,var(--bg),transparent 40%)}.hero .txt{padding:2rem 4vw 4rem}.hero .meta{display:none}}
+
+/* TICKER accent — le 10% */
+.tick{background:var(--accent);color:var(--ink);overflow:hidden;padding:.9rem 0}
+.tick .t{display:flex;width:max-content;animation:mq 30s linear infinite}
+.tick .t span{font-family:var(--display);font-size:1rem;letter-spacing:.06em;text-transform:uppercase;padding-right:2.6rem;white-space:nowrap}
+.tick:hover .t{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* NUMÉROS — section surface, liste éditoriale, image qui suit le curseur */
+.nums{background:var(--surface);padding:10rem 0 8rem;position:relative}
+.nums .head{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end;margin-bottom:4rem}
+.nums .head p{max-width:40ch;opacity:.7;justify-self:end}
+.row{display:grid;grid-template-columns:5rem 1fr auto;gap:2rem;align-items:baseline;padding:1.8rem 0;border-top:1px solid rgba(237,230,219,.12);position:relative;transition:padding-left .5s var(--ease)}
+.row:last-child{border-bottom:1px solid rgba(237,230,219,.12)}
+.row:hover{padding-left:1rem}
+.row .n{font-family:var(--display);font-size:1rem;opacity:.5}
+.row .name{font-family:var(--display);font-size:clamp(1.6rem,3.6vw,3rem);letter-spacing:-.03em;text-transform:uppercase;line-height:1}
+.row .ing{font-size:.9rem;opacity:.55;margin-top:.4rem;font-family:var(--sans)}
+.row .p{font-family:var(--display);font-size:1.1rem}
+.row .n::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--accent);transition:width var(--d) var(--ease)}
+.row:hover .n::after{width:100%}
+.float{position:fixed;top:0;left:0;width:260px;aspect-ratio:4/5;pointer-events:none;z-index:30;opacity:0;transform:translate(-50%,-50%) scale(.9);overflow:hidden;transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.float img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s var(--ease)}
+.float img.on{opacity:1}
+.float.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+@media(hover:none){.float{display:none}.row{grid-template-columns:3rem 1fr auto;gap:1rem}}
+
+/* FLIP — section chaux, la respiration */
+.flip{background:var(--flip);color:var(--ink);padding:10rem 0}
+.flip .g{display:grid;grid-template-columns:5fr 7fr;gap:6vw;align-items:start}
+.flip .g .l{position:sticky;top:20vh}
+.flip .h{margin:.8rem 0 1.6rem}
+.flip p{max-width:44ch;opacity:.85;font-size:1.05rem}
+.flip blockquote{margin-top:2.4rem;font-family:var(--display);font-size:clamp(1.3rem,2.4vw,1.9rem);letter-spacing:-.02em;line-height:1.15;max-width:28ch}
+.flip blockquote small{display:block;font-family:var(--sans);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-top:1rem;font-weight:600}
+.flip .ph{display:grid;gap:1.2rem;grid-template-columns:1fr 1fr}
+.flip .ph img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.flip .ph img:nth-child(2){margin-top:6rem}
+.flip .ph img:nth-child(3){grid-column:1/-1;aspect-ratio:16/10}
+@media(max-width:900px){.flip .g{grid-template-columns:1fr}.flip .g .l{position:static}}
+
+/* NICHE — image plein bleed, le moment fort, titre un mot */
+.niche{position:relative;height:100svh;overflow:hidden;background:var(--mid)}
+.niche img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover}
+.niche .w{position:absolute;inset:0;display:grid;place-items:end start;padding:0 0 8vh 4vw;background:linear-gradient(0deg,rgba(22,18,16,.7),transparent 50%)}
+.niche .display{font-size:clamp(3.5rem,11vw,11rem)}
+.niche .cap{display:block;margin-bottom:1rem}
+
+/* INFOS — base */
+.infos{padding:8rem 0 2rem;background:var(--bg)}
+.infos .g{display:grid;grid-template-columns:repeat(4,1fr);gap:3rem;padding-bottom:5rem;border-bottom:1px solid rgba(237,230,219,.12)}
+.infos h3{font-size:var(--text-cap);letter-spacing:.18em;text-transform:uppercase;opacity:.5;margin-bottom:1rem;font-weight:600}
+.infos .big{font-family:var(--display);font-size:1.6rem;letter-spacing:-.02em;line-height:1.1}
+.infos p{opacity:.8}
+.infos .end{display:flex;justify-content:space-between;align-items:end;padding:3rem 0 1rem;gap:2rem;flex-wrap:wrap}
+.infos .end .h{font-size:clamp(1.8rem,4vw,3rem);max-width:16ch}
+@media(max-width:900px){.infos .g{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="cur" id="cur"></div><div class="grain"></div>
+<a class="back" href="index.html">← pistes</a>
+<nav class="top"><span>Labo N° Heure</span><ul><li><a class="lnk" href="#nums">Numéros</a></li><li><a class="lnk" href="#labo">Le labo</a></li><li><a class="lnk" href="#infos">Venir</a></li></ul></nav>
+
+<section class="hero">
+  <div class="txt">
+    <span class="cap">Cocktailerie · Numéros · Spiritueux</span>
+    <h1 class="display" data-words>Labo<br>N<span class="deg">°</span> <em>Heure</em></h1>
+    <p class="sub">Sept cocktails numérotés. Des bouteilles qu'on ne croise nulle part ailleurs à Marseille. Une place calme, le soir.</p>
+    <div class="cta"><a class="btn" href="#nums" data-mag><span>Les numéros</span></a><a class="lnk" href="#infos" style="align-self:center;font-weight:600">Privatiser →</a></div>
+  </div>
+  <div class="ph clip" data-clip><img src="img/niche.jpg" alt="" data-para></div>
+  <div class="meta">49a rue des Trois Frères Barthélémy<br>Mardi — Samedi · 18h — 01h</div>
+</section>
+
+<div class="tick"><div class="t"><span>N°01 Clandestino</span><span>N°02 Coconut</span><span>N°03 Cosmic Girl</span><span>N°04 Feeling Goudes</span><span>N°05 Jamming</span><span>N°06 Mannix</span><span>N°07 Sunny</span><span>N°01 Clandestino</span><span>N°02 Coconut</span><span>N°03 Cosmic Girl</span><span>N°04 Feeling Goudes</span><span>N°05 Jamming</span><span>N°06 Mannix</span><span>N°07 Sunny</span></div></div>
+
+<section class="nums" id="nums">
+  <div class="wrap">
+    <div class="head"><h2 class="h" data-words>Sept numéros.<br>Pas un de plus.</h2><p>Cinq centilitres de spiritueux par verre, tout fait maison. La carte change quand Zak et Marine en ont envie, pas quand le calendrier le dit.</p></div>
+    <div id="rows">
+      <div class="row" data-img="img/c-clandestino.jpg"><span class="n">01</span><div><div class="name">Clandestino</div><div class="ing">Mezcal · agrumes · fumée</div></div><span class="p">12 €</span></div>
+      <div class="row" data-img="img/c-coconut.jpg"><span class="n">02</span><div><div class="name">Coconut</div><div class="ing">Rhum · coco · citron vert</div></div><span class="p">11 €</span></div>
+      <div class="row" data-img="img/c-cosmic.jpg"><span class="n">03</span><div><div class="name">Cosmic Girl</div><div class="ing">Gin · fleurs · pétillant</div></div><span class="p">12 €</span></div>
+      <div class="row" data-img="img/c-goudes.jpg"><span class="n">04</span><div><div class="name">Feeling Goudes</div><div class="ing">Pastis · fenouil · soleil</div></div><span class="p">10 €</span></div>
+      <div class="row" data-img="img/c-jamming.jpg"><span class="n">05</span><div><div class="name">Jamming</div><div class="ing">Rhum · fruits rouges · épices</div></div><span class="p">12 €</span></div>
+      <div class="row" data-img="img/c-mannix.jpg"><span class="n">06</span><div><div class="name">Mannix</div><div class="ing">Whisky · amer · cerise</div></div><span class="p">13 €</span></div>
+      <div class="row" data-img="img/c-sunny.jpg"><span class="n">07</span><div><div class="name">Sunny</div><div class="ing">Cachaça · passion · basilic</div></div><span class="p">11 €</span></div>
+    </div>
+  </div>
+  <div class="float" id="float"></div>
+</section>
+
+<section class="flip" id="labo">
+  <div class="wrap g">
+    <div class="l">
+      <span class="cap">Le labo</span>
+      <h2 class="h" data-words>Vous avez déjà<br>un bar préféré.<br>Celui-ci va le gêner.</h2>
+      <p>Zak et Marine réinventent les classiques et composent des élixirs maison. Les spiritueux viennent de loin, les produits viennent de près, et on vous appelle « mes amis » dès le deuxième verre.</p>
+      <blockquote>« Bottles of kelp-infused gin are backlit behind a sleek, minimalist bar. »<small>The New York Times — 36 Hours in Marseille</small></blockquote>
+    </div>
+    <div class="ph"><img src="img/interieur.jpg" alt="" class="clip" data-clip><img src="img/team.jpg" alt="" class="clip" data-clip><img src="img/facade.jpg" alt="" class="clip" data-clip></div>
+  </div>
+</section>
+
+<section class="niche"><img src="img/niche.jpg" alt="" data-para><div class="w"><div><span class="cap">Les niches</span><h2 class="display" data-words>Allumées.</h2></div></div></section>
+
+<section class="infos" id="infos">
+  <div class="wrap">
+    <div class="g">
+      <div><h3>Horaires</h3><p class="big">Mardi — Samedi<br>18h — 01h</p></div>
+      <div><h3>Adresse</h3><p>49a rue des Trois Frères Barthélémy<br>13006 Marseille<br><a class="lnk" href="https://maps.google.com/?q=Labo+n+heure+Marseille" target="_blank" style="font-weight:600">Itinéraire →</a></p></div>
+      <div><h3>Privatisation</h3><p>Trente personnes, le labo pour vous. Anniversaires, afterworks, lancements.</p></div>
+      <div><h3>Suivre</h3><p><a class="lnk" href="https://www.instagram.com/labo_n.h/" target="_blank" style="font-weight:600">@labo_n.h →</a></p></div>
+    </div>
+    <div class="end"><h2 class="h" data-words>Le premier numéro se choisit sur place.</h2><a class="btn" href="mailto:bonjour@labonheure.fr" data-mag><span>Nous écrire</span></a></div>
+    <p style="font-size:.72rem;opacity:.4;margin-top:3rem">© Labo N° Heure — Piste D « Nuit chaude » · maquette</p>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const E='cubic-bezier(.76,0,.24,1)', RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+gsap.registerEase('aw',p=>{const c=[.76,0,.24,1];let t=p;for(let i=0;i<6;i++){const x=3*c[0]*t*(1-t)**2+3*c[2]*t*t*(1-t)+t**3-p;const dx=3*c[0]*(1-t)**2-6*c[0]*t*(1-t)+6*c[2]*t*(1-t)-3*c[2]*t*t+3*t*t;if(!dx)break;t-=x/dx;}return 3*c[1]*t*(1-t)**2+3*c[3]*t*t*(1-t)+t**3;});
+// split mots (sans SplitText)
+document.querySelectorAll('[data-words]').forEach(h=>{
+  h.innerHTML=h.innerHTML.split(/(<br\s*\/?>)/i).map(part=>/^<br/i.test(part)?part:part.replace(/(<[^>]+>|[^<\s]+)(\s*)/g,(m,w,s)=>/^<[^>]+>$/.test(w)?w:`<span class="word"><span>${w}</span></span>${s}`)).join('');
+});
+if(!RM){
+  const heroWords=document.querySelectorAll('.hero .word > span');
+  gsap.to(heroWords,{y:0,duration:.9,ease:'aw',stagger:.06,delay:.15});
+  gsap.to('.hero [data-clip]',{clipPath:'polygon(0 0,100% 0,100% 100%,0 100%)',duration:1.2,ease:'aw',delay:.2});
+  gsap.from('.hero .sub, .hero .cta, .hero .meta',{opacity:0,duration:.9,ease:'aw',delay:.8,stagger:.06});
+  document.querySelectorAll('h2[data-words]').forEach(h=>gsap.to(h.querySelectorAll('.word > span'),{y:0,duration:.9,ease:'aw',stagger:.05,scrollTrigger:{trigger:h,start:'top 85%'}}));
+  document.querySelectorAll('.flip [data-clip]').forEach(i=>gsap.to(i,{clipPath:'polygon(0 0,100% 0,100% 100%,0 100%)',duration:1.2,ease:'aw',scrollTrigger:{trigger:i,start:'top 85%'}}));
+  gsap.to('.niche img',{yPercent:12,ease:'none',scrollTrigger:{trigger:'.niche',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.to('.hero .ph img',{scale:1,duration:1.6,ease:'aw',delay:.2});
+  gsap.from('.row',{opacity:0,duration:.9,ease:'aw',stagger:.06,scrollTrigger:{trigger:'#rows',start:'top 85%'}});
+} else { document.querySelectorAll('.word > span').forEach(s=>s.style.transform='none'); }
+// curseur + image flottante (desktop)
+const cur=document.getElementById('cur'),fl=document.getElementById('float');
+const rows=[...document.querySelectorAll('.row')];
+rows.forEach(r=>{const im=new Image();im.src=r.dataset.img;fl.appendChild(im);r._im=im;});
+let mx=0,my=0,fx=0,fy=0;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function tick(){fx+=(mx-fx)*.12;fy+=(my-fy)*.12;cur.style.transform=`translate(${mx-7}px,${my-7}px)`;fl.style.left=fx+'px';fl.style.top=fy+'px';requestAnimationFrame(tick);})();
+rows.forEach(r=>{r.addEventListener('mouseenter',()=>{fl.classList.add('on');cur.classList.add('big');rows.forEach(o=>o._im.classList.toggle('on',o===r));});r.addEventListener('mouseleave',()=>{fl.classList.remove('on');cur.classList.remove('big');});});
+document.querySelectorAll('a,button').forEach(a=>{a.addEventListener('mouseenter',()=>cur.classList.add('big'));a.addEventListener('mouseleave',()=>cur.classList.remove('big'));});
+document.querySelectorAll('[data-mag]').forEach(el=>{el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();gsap.to(el,{x:(e.clientX-r.left-r.width/2)*.3,y:(e.clientY-r.top-r.height/2)*.3,duration:.4,ease:'aw'});});el.addEventListener('mouseleave',()=>gsap.to(el,{x:0,y:0,duration:.7,ease:'aw'}));});
+</script>
+</body>
+</html>
