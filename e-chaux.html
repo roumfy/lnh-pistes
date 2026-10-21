@@ -33,15 +33,15 @@ body{background:var(--bg);color:var(--ink)}
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.4rem}
 .item{position:relative}
 .item:nth-child(1){grid-column:1/5}.item:nth-child(2){grid-column:6/9;margin-top:5rem}.item:nth-child(3){grid-column:9/13}
-.item:nth-child(4){grid-column:2/5;margin-top:-3rem}.item:nth-child(5){grid-column:5/10}.item:nth-child(6){grid-column:10/13;margin-top:4rem}
-.item:nth-child(7){grid-column:4/9;margin-top:-2rem}
+.item:nth-child(4){grid-column:2/5;margin-top:2rem}.item:nth-child(5){grid-column:5/10}.item:nth-child(6){grid-column:10/13;margin-top:4rem}
+.item:nth-child(7){grid-column:4/9;margin-top:2rem}
 .item .ph{overflow:hidden;aspect-ratio:4/5;background:var(--mid)}
 .item .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease),filter 1.1s var(--ease)}
 .item:hover .ph img{transform:scale(1.06);filter:saturate(1.15)}
-.item .cap{margin-top:1rem;display:flex;justify-content:space-between}
+.item .meta{margin-top:1rem;display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
 .item .name{font-family:var(--display);font-size:1.3rem;letter-spacing:-.02em;text-transform:uppercase;margin-top:.3rem}
 .item .ing{opacity:.6;font-size:.85rem}
-.item .n{position:absolute;top:-.9rem;left:-.4rem;font-family:var(--display);font-size:clamp(3rem,6vw,5.5rem);letter-spacing:-.05em;color:var(--bg);mix-blend-mode:normal;text-shadow:0 0 0 var(--ink);-webkit-text-stroke:1.5px var(--ink);color:transparent;pointer-events:none;line-height:1}
+.item .n{position:absolute;top:-1.2rem;left:-.6rem;z-index:2;font-family:var(--display);font-size:clamp(3rem,6vw,5.5rem);letter-spacing:-.05em;-webkit-text-stroke:1.5px var(--bg);color:var(--ink);pointer-events:none;line-height:1;text-shadow:0 2px 14px rgba(0,0,0,.25)}
 @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.item{grid-column:auto!important;margin-top:0!important}.item:nth-child(7){grid-column:1/-1!important}}
 
 /* FLIP sombre — le mur de niches, parallax, citation */
@@ -107,13 +107,13 @@ body{background:var(--bg);color:var(--ink)}
   <div class="wrap">
     <div class="head"><h2 class="h" data-words>Les numéros</h2><p>Tout fait maison. La carte bouge quand Zak et Marine en ont envie.</p></div>
     <div class="grid">
-      <article class="item"><span class="n">01</span><div class="ph"><img src="img/c-clandestino.jpg" alt="" class="clip" data-clip></div><div class="cap"><div><div class="name">Clandestino</div><div class="ing">Mezcal · agrumes · fumée</div></div><div>12 €</div></div></article>
-      <article class="item"><span class="n">02</span><div class="ph"><img src="img/c-coconut.jpg" alt="" class="clip" data-clip></div><div class="cap"><div><div class="name">Coconut</div><div class="ing">Rhum · coco · citron vert</div></div><div>11 €</div></div></article>
-      <article class="item"><span class="n">03</span><div class="ph"><img src="img/c-cosmic.jpg" alt="" class="clip" data-clip></div><div class="cap"><div><div class="name">Cosmic Girl</div><div class="ing">Gin · fleurs · pétillant</div></div><div>12 €</div></div></article>
-      <article class="item"><span class="n">04</span><div class="ph"><img src="img/c-goudes.jpg" alt="" class="clip" data-clip></div><div class="cap"><div><div class="name">Feeling Goudes</div><div class="ing">Pastis · fenouil · soleil</div></div><div>10 €</div></div></article>
-      <article class="item"><span class="n">05</span><div class="ph"><img src="img/c-jamming.jpg" alt="" class="clip" data-clip></div><div class="cap"><div><div class="name">Jamming</div><div class="ing">Rhum · fruits rouges · épices</div></div><div>12 €</div></div></article>
-      <article class="item"><span class="n">06</span><div class="ph"><img src="img/c-mannix.jpg" alt="" class="clip" data-clip></div><div class="cap"><div><div class="name">Mannix</div><div class="ing">Whisky · amer · cerise</div></div><div>13 €</div></div></article>
-      <article class="item"><span class="n">07</span><div class="ph"><img src="img/c-sunny.jpg" alt="" class="clip" data-clip></div><div class="cap"><div><div class="name">Sunny</div><div class="ing">Cachaça · passion · basilic</div></div><div>11 €</div></div></article>
+      <article class="item"><span class="n">01</span><div class="ph"><img src="img/c-clandestino.jpg" alt="" class="clip" data-clip></div><div class="meta"><div><div class="name">Clandestino</div><div class="ing">Mezcal · agrumes · fumée</div></div><div>12 €</div></div></article>
+      <article class="item"><span class="n">02</span><div class="ph"><img src="img/c-coconut.jpg" alt="" class="clip" data-clip></div><div class="meta"><div><div class="name">Coconut</div><div class="ing">Rhum · coco · citron vert</div></div><div>11 €</div></div></article>
+      <article class="item"><span class="n">03</span><div class="ph"><img src="img/c-cosmic.jpg" alt="" class="clip" data-clip></div><div class="meta"><div><div class="name">Cosmic Girl</div><div class="ing">Gin · fleurs · pétillant</div></div><div>12 €</div></div></article>
+      <article class="item"><span class="n">04</span><div class="ph"><img src="img/c-goudes.jpg" alt="" class="clip" data-clip></div><div class="meta"><div><div class="name">Feeling Goudes</div><div class="ing">Pastis · fenouil · soleil</div></div><div>10 €</div></div></article>
+      <article class="item"><span class="n">05</span><div class="ph"><img src="img/c-jamming.jpg" alt="" class="clip" data-clip></div><div class="meta"><div><div class="name">Jamming</div><div class="ing">Rhum · fruits rouges · épices</div></div><div>12 €</div></div></article>
+      <article class="item"><span class="n">06</span><div class="ph"><img src="img/c-mannix.jpg" alt="" class="clip" data-clip></div><div class="meta"><div><div class="name">Mannix</div><div class="ing">Whisky · amer · cerise</div></div><div>13 €</div></div></article>
+      <article class="item"><span class="n">07</span><div class="ph"><img src="img/c-sunny.jpg" alt="" class="clip" data-clip></div><div class="meta"><div><div class="name">Sunny</div><div class="ing">Cachaça · passion · basilic</div></div><div>11 €</div></div></article>
     </div>
   </div>
 </section>
